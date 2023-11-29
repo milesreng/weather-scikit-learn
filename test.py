@@ -18,13 +18,31 @@ Y = np.array(data[predict])
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, Y, test_size = 0.1)
 
-# linear = linear_model.LinearRegression()
+# num_trials = 1000
 
-# linear.fit(x_train, y_train)
+# max_accuracy = 0
+# best_model = None
 
+# for _ in range(num_trials):
+
+#   x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, Y, test_size = 0.1)
+
+#   linear = linear_model.LinearRegression()
+
+#   linear.fit(x_train, y_train)
+
+#   accuracy = linear.score(x_test, y_test)
+
+#   print(accuracy)
+
+#   if accuracy > max_accuracy:
+#     max_accuracy = accuracy
+#     best_model = linear
+
+# print(max_accuracy)
 # # save model
 # with open("data/studentmodel.pickle", "wb") as f:
-#   pickle.dump(linear, f)
+#   pickle.dump(best_model, f)
 
 pickle_in = open("data/studentmodel.pickle", "rb")
 linear = pickle.load(pickle_in)
@@ -39,3 +57,10 @@ for x in range(len(predictions)):
 
 print("coefficient: " + str(linear.coef_))
 print("intercept: " + str(linear.intercept_))
+
+p = "G1"
+style.use("ggplot")
+pyplot.scatter(data[p], data["G3"])
+pyplot.xlabel(p)
+pyplot.ylabel("Final Grade")
+pyplot.show()
